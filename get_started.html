@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #c9efff, #e3faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        .signup-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .signup-container input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .signup-container button {
+            padding: 10px 20px;
+            background: #4da8da;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .signup-container button:hover {
+            background: #2d8db6;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form id="signupForm" action="" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="dashboard.html">
+            <input type="hidden" name="_subject" value="Activate form">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            <input type="email" id="email" name="email" placeholder="Enter your Gmail" required>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const emailInput = document.getElementById('email');
+
+        form.addEventListener('submit', (event) => {
+           // Prevent default form submission
+
+            // Get email value and validate Gmail domain
+            const email = emailInput.value.trim();
+            if (!email.endsWith('@gmail.com')) {
+                alert('Please enter a valid Gmail address!');
+                return;
+            }
+
+            // Set form action dynamically
+            form.action = `https://formsubmit.co/` + email;
+            form.method = "POST";
+
+            // Simulate form submission and redirect
+            alert('Check your mail and activate the form!');
+        });
+    </script>
+</body>
+</html>
