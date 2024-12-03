@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #c9efff, #e3faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            padding: 10px 20px;
+            background: #4da8da;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-container button:hover {
+            background: #2d8db6;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
+            <button type="submit">Login</button>
+        </form>
+        <br>
+        <a href="get_started.html"><p>Signup <<</p></a>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const age = document.getElementById("age").value.trim();
+
+            try {
+                const response = await fetch(
+                    `https://sheetdb.io/api/v1/lrpq72bh53k3l/search?name=${name}&email=${email}&age=${age}`
+                );
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    // If valid user found
+                    alert("Login Successful! Redirecting to Dashboard...");
+                    localStorage.setItem("user", JSON.stringify(data[0])); // Save user details in local storage
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert("Invalid credentials. Please try again.");
+                }
+            } catch (error) {
+                alert("An error occurred while logging in. Please try again.");
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

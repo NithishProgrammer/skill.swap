@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Courses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f8ff;
+        }
+
+        .course-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            width: 250px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .course-card p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .get-started-btn {
+            background-color: #4da8da;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .get-started-btn:hover {
+            background-color: #3a88b5;
+        }
+
+        /* Form Styles */
+        .form-container {
+            width: 90%;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .form-container input, .form-container select, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .form-container button {
+            background-color: #4da8da;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #3a88b5;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .course-card {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container" id="courseContainer">
+        <!-- Course cards will be displayed here -->
+    </div>
+
+    <!-- Form Modal -->
+    <div class="overlay" id="overlay"></div>
+    <div class="form-container" id="formContainer">
+        <h3>Attend Course</h3>
+        <form id="attendForm">
+            <input type="hidden" name="_subject" value="New Swap" id="hiddensub">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+            <input type="email" id="userEmail" name="userEmail" placeholder="Your Email" required>
+            <select id="userGender" name="userGender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="number" id="userAge" name="userAge" placeholder="Your Age" required>
+            <input type="text" id="courseName" name="courseName" placeholder="Course Name" disabled>
+            <label>
+                <input type="checkbox" id="acceptCheckbox" name="acceptCheckbox" required> Ensure you accept for the SWAP.
+            </label>
+            <br><br>
+            <button type="submit" id="sub">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let selectedCourseName = "";
+
+        // Fetching courses from SheetDB API
+        async function fetchCourses() {
+            try {
+                const response = await fetch('https://sheetdb.io/api/v1/lrpq72bh53k3l');
+                const courses = await response.json();
+
+                const container = document.getElementById('courseContainer');
+
+                if (courses.length === 0) {
+                    container.innerHTML = "<p>No courses available at the moment.</p>";
+                } else {
+                    // Display courses
+                    container.innerHTML = courses.map(course => {
+                        return `
+                            <div class="course-card">
+                                <h2 style="text-decoration: underline; text-underline-offset: 4px; color: blue;">${course.course_name}</h2>
+                                <h4>Swap for: ${course.swap_for}</h4>
+                                 <h4>Duration: ${course.Duration}</h4>
+                                <p>Instructor: ${course.name}</p>
+                                <p>#: ${course.hashtag}</p>
+                                <button class="get-started-btn" onclick="getStarted('${course.course_name}', '${course.name}')">Get Started</button>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+                document.getElementById('courseContainer').innerHTML = "<p>Error loading courses. Please try again later.</p>";
+            }
+        }
+
+        // Show Form when user clicks "Get Started"
+        function getStarted(courseName, instructorName) {
+            selectedCourseName = courseName;
+            document.getElementById('courseName').value = courseName ;
+
+            // Show the form
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Handle form submission
+        document.getElementById('attendForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            const userGender = document.getElementById('userGender').value;
+            const userAge = document.getElementById('userAge').value;
+            const acceptCheckbox = document.getElementById('acceptCheckbox').checked;
+
+            if (!acceptCheckbox) {
+                alert("You must accept the terms to proceed.");
+                return;
+            }
+
+            const instructorEmail = await getInstructorEmail(selectedCourseName);
+
+            const formData = {
+                name: userName,
+                email: userEmail,
+                gender: userGender,
+                age: userAge,
+                course_name: selectedCourseName,
+                instructor_email: instructorEmail
+            };
+
+            // Send the data using FormSubmit API
+            const response = await fetch('https://formsubmit.co/ajax/' + instructorEmail, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+
+                 document.getElementById('sub').style.display = "none";
+
+
+                alert("Form Submitted..");
+                document.getElementById('hiddensub').value = "You got a new swap for '" + document.getElementById("courseName").value + "'"
+                window.location.href = 'dashboard.html'; // Redirect to dashboard after successful submission
+            } else {
+                alert("There was an error submitting the form. Please try again.");
+            }
+        });
+
+        // Fetch instructor email from the SheetDB API
+        async function getInstructorEmail(courseName) {
+            try {
+                const response = await fetch('https://sheetdb.io/api/v1/lrpq72bh53k3l');
+                const courses = await response.json();
+                const course = courses.find(course => course.course_name === courseName);
+                return course ? course.email : null;
+            } catch (error) {
+                console.error('Error fetching instructor email:', error);
+                return null;
+            }
+        }
+
+        // Initial Fetch
+        fetchCourses();
+    </script>
+</body>
+</html>

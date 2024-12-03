@@ -62,38 +62,71 @@
 <body>
     <div class="signup-container">
         <h2>Signup</h2>
-        <form id="signupForm" action="" method="POST">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://nithishprogrammer.github.io/skill.swap/dashboard">
-            <input type="hidden" name="_subject" value="Activate form">
+        <form id="signupForm">
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
             <input type="number" id="age" name="age" placeholder="Enter your age" required>
             <input type="email" id="email" name="email" placeholder="Enter your Gmail" required>
             <button type="submit">Signup</button>
         </form>
+        <br>
+        <a href="login.html"><p>Login >></p></a>
     </div>
 
     <script>
         const form = document.getElementById('signupForm');
         const emailInput = document.getElementById('email');
+        const nameInput = document.getElementById('name');
+        const ageInput = document.getElementById('age');
 
-        form.addEventListener('submit', (event) => {
-           // Prevent default form submission
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-            // Get email value and validate Gmail domain
+            // Get form values
+            const name = nameInput.value.trim();
+            const age = ageInput.value.trim();
             const email = emailInput.value.trim();
+
+            // Validate email
             if (!email.endsWith('@gmail.com')) {
                 alert('Please enter a valid Gmail address!');
                 return;
             }
 
-            // Set form action dynamically
-            form.action = `https://formsubmit.co/` + email;
-            form.method = "POST";
+            // Prepare data to send to SheetDB
+            const userData = {
+                name: name,
+                age: age,
+                email: email,
+            };
 
-            // Simulate form submission and redirect
-            alert('Check your mail and activate the form!');
+            try {
+                // Send data to SheetDB
+                const response = await fetch("https://sheetdb.io/api/v1/lrpq72bh53k3l", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Signup successful!');
+                    form.action = "https://formsubmit.co/" + email;
+                    form.method = "POST"
+                    window.location.href = "login.html"; // Redirect to dashboard after success
+                } else {
+                    alert('There was an error. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('Error submitting form. Please try again.');
+            }
         });
     </script>
+
+    <br>
+
 </body>
 </html>
