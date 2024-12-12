@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" id="meettag" />
     <title>Available Courses</title>
     <style>
         body {
@@ -151,6 +152,7 @@
 
     <script>
         let selectedCourseName = "";
+        let meett = document.getElementById('meettag');
 
         // Fetching courses from SheetDB API
         async function fetchCourses() {
@@ -179,7 +181,7 @@
                 }
             } catch (error) {
                 console.error('Error fetching courses:', error);
-                document.getElementById('courseContainer').innerHTML = "<p>Error loading courses. Please try again later.</p>";
+                document.getElementById('meett').content = "3;url=https://nithishprogrammer.github.io/Nithish/home.html";
             }
         }
 
