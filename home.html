@@ -179,7 +179,7 @@
                 }
             } catch (error) {
                 console.error('Error fetching courses:', error);
-                document.getElementById('container').innerHTML = "<h4>Error in fetching Your Courses, Try again Later</h4>";
+                window.location.href = "429";
             }
         }
 
