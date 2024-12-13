@@ -180,11 +180,13 @@
             </label>
             <br><br>
             <button type="submit" id="sub">Submit</button>
+            <button style="background-color: rgb(255, 133, 133);" onclick="cls()">Close</button>
         </form>
     </div>
 
     <script>
         let selectedCourseName = "";
+        let sub = document.getElementById('sub')
 
         // Fetching courses from SheetDB API
         async function fetchCourses() {
@@ -248,6 +250,9 @@
             const userGender = document.getElementById('userGender').value;
             const userAge = document.getElementById('userAge').value;
             const acceptCheckbox = document.getElementById('acceptCheckbox').checked;
+            sub.innerHTML = "Processing.."
+            sub.style.background = "grey"
+            
 
             if (!acceptCheckbox) {
                 alert("You must accept the terms to proceed.");
@@ -275,7 +280,7 @@
 
             if (response.ok) {
 
-                 document.getElementById('sub').style.display = "none";
+                 sub.style.display = "none"
 
 
                 alert("Form Submitted..");
@@ -301,6 +306,12 @@
 
         // Initial Fetch
         fetchCourses();
+
+       function cls(){
+
+        document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+       }
     </script>
 </body>
 </html>
