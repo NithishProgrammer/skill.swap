@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users/Teachers Guide - Recipro Skills</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #eaf4fc, #f8fbff);
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #179dfd, #179dfc);
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #0077cc;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            color: #20a1fd;
+            margin-bottom: 15px;
+        }
+
+        .container p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .important {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .note {
+            background-color: #e8f4ff;
+            border-left: 5px solid #0077cc;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #2ba3f8;
+        }
+
+        /* Buttons */
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(90deg, #0077cc, #005fa3);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #005fa3, #003d73);
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #0794f8, #038aeb);
+            color: white;
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: #f0faff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Users/Teachers Guide</h1>
+        <p>Everything you need to know about using Recipro Skills</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Welcome to Recipro Skills</h2>
+        <p>
+            Recipro Skills is a platform designed to connect like-minded people to share knowledge and learn together. 
+            Whether you are a teacher creating a course or a user enrolling, this guide will help you understand how it works.
+        </p>
+
+        <h2>For Users</h2>
+        <p>
+            When you register for a course, your details will be shared with the respective course maker. 
+            Please note that <span class="important">acceptance into the course purely depends on the course maker</span>.
+        </p>
+
+        <h2>For Teachers</h2>
+        <p>
+            As a course maker, you will receive an email from "Form Submit" when your first attendee registers for your course. 
+            To ensure smooth communication, <span class="important">activate your form</span> using the link in the email. Once activated, 
+            you'll receive emails whenever someone registers for your course.
+        </p>
+
+        <h2>Course Conduct</h2>
+        <p>
+            Courses can be conducted on any authorized online platform such as Google Meet, Zoom, Microsoft Teams, or similar tools. 
+            Please make sure to provide the required meeting details to your attendees in a timely manner.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            At Recipro Skills, we aim to connect people with similar interests, enabling them to <span class="important">swap knowledge and learn</span>. 
+            Together, we create a dynamic and interactive learning environment.
+        </p>
+
+        <div class="note">
+            <strong>Note:</strong> All communication between users and course makers is monitored to ensure safety and transparency. 
+            If you face any issues, feel free to reach out.
+        </div>
+
+        <div class="button-container">
+            <button class="btn" onclick="complain()">Complain About a Course Maker/Instructor</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>2025 &copy; Recipro Skills</p>
+    </footer>
+
+    <script>
+        function complain() {
+            window.location.href = "mailto:support@reciproskills.com?subject=Complaint about Course Maker/Instructor&body=Please provide details about the issue you are facing with the course maker/instructor with proof. Include Instructor Name , Mail (You and your Instructor interaction email) , Issue Facing.";
+        }
+    </script>
+</body>
+</html>
