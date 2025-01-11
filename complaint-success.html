@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Recipro Skills</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #eaf4fc, #f8fbff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Container */
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #0077cc;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            color: #0077cc;
+            margin-bottom: 15px;
+        }
+
+        .container p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .container a {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(90deg, #0077cc, #005fa3);
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 15px;
+        }
+
+        .container a:hover {
+            background: linear-gradient(90deg, #005fa3, #003d73);
+            transform: scale(1.05);
+        }
+
+        .container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        /* Back Button Styles */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #f0f8ff;
+            color: #0077cc;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #0077cc;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #e0f7fa;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .container h1 {
+                font-size: 30px;
+            }
+
+            .container p {
+                font-size: 16px;
+            }
+
+            .container a, .back-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <img src="https://nithishprogrammer.github.io/skill.swap/S-removebg-preview.png" alt="Success Icon">
+        <h1>Thank You!</h1>
+        <p>Your complaint has been successfully submitted. Our team will review it and take the necessary actions.</p>
+        <p>If you have further concerns, feel free to reach out to us at <a href="mailto:info.reciproskills@gmail.com">Mail Us</a>.</p>
+        <a href="javascript:history.back()" class="back-btn">Go Back</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Recipro Skills</p>
+    </footer>
+</body>
+</html>
