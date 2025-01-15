@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exams (Limited) by Recipro Skills</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #f0f8ff, #e0f7fa);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #0077cc;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 30px 20px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+                    }
+
+        .exam-box {
+            background-color: rgba(255, 255, 255, 0.4);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 8px 16px;
+            
+            border-left: 2px solid #0077cc;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .exam-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .exam-box h3 {
+            font-size: 22px;
+            color: #0077cc;
+        }
+
+        .exam-box p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .exam-box button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .exam-box button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .exam-box {
+                width: 100%;
+                max-width: 280px;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .quote {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exams (Limited) by Recipro Skills</h1>
+    <h2>Certify yourself with taking an exam from Recipro Skills for Free <span style="font-size: 14px; text-decoration: underline;">Read this!</span> </h2>
+
+    <div class="quote">
+        <p>"Degrees may open doors, but Skills keep them Open!"</p>
+    </div>
+
+    <div class="container">
+        <!-- Exam 1 -->
+        <div class="exam-box">
+            <h3>Python (Beginner)</h3>
+            <p>Test your knowledge in Python Beginner Level</p>
+            <button onclick="window.location.href='https://forms.gle/7FVDkMCFiTHW6sPv7'">Take Exam</button>
+        </div>
+
+        <!-- Exam 2 -->
+        <div class="exam-box">
+            <h3>Python Advanced</h3>
+            <p>Challenge yourself with the Python Advanced Level.</p>
+            <button onclick="window.location.href='exam-webdev.html'">Take Exam</button>
+        </div>
+
+        <!-- Exam 3 -->
+        <div class="exam-box">
+            <h3>Data Science</h3>
+            <p>Prove your skills in the field of Data Science and Analytics.</p>
+            <button onclick="window.location.href='exam-datascience.html'">Take Exam</button>
+        </div>
+
+        <!-- Exam 4 -->
+        <div class="exam-box">
+            <h3>Python Programming</h3>
+            <p>Assess your proficiency in Python programming language.</p>
+            <button onclick="window.location.href='exam-python.html'">Take Exam</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Recipro Skills | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+    </footer>
+
+</body>
+</html>
