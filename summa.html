@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Call Creator</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Create a Google Meet Video Call</h1>
+    <button id="authorize">Authorize Gmail</button>
+    <button id="create-call" disabled>Create Google Meet Call</button>
+    <p id="output"></p>
+
+    <script>
+        const CLIENT_ID = '681471161402-10mube23lmk5kgvf0vs1fs4gl3b6lqfe.apps.googleusercontent.com';
+        const API_KEY = 'AIzaSyANOSlFpP1fzmrJIpu2UXDSuTuxUQviKL4';
+        const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+
+        let gapiInited = false;
+        let gapiAuthorized = false;
+
+        function initializeGapi() {
+            gapi.load('client:auth2', async () => {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    clientId: CLIENT_ID,
+                    scope: SCOPES,
+                });
+                document.getElementById('authorize').disabled = false;
+            });
+        }
+
+        document.getElementById('authorize').onclick = async () => {
+            gapi.auth2.getAuthInstance().signIn().then(() => {
+                gapiAuthorized = true;
+                document.getElementById('create-call').disabled = false;
+                document.getElementById('output').textContent = 'Authorized!';
+            });
+        };
+
+        document.getElementById('create-call').onclick = async () => {
+            if (!gapiAuthorized) return;
+
+            const event = {
+                summary: "Google Meet Video Call",
+                description: "Join the video call using the link below.",
+                start: {
+                    dateTime: new Date().toISOString(),
+                    timeZone: "UTC",
+                },
+                end: {
+                    dateTime: new Date(new Date().getTime() + 30 * 60000).toISOString(), // 30 minutes from now
+                    timeZone: "UTC",
+                },
+                conferenceData: {
+                    createRequest: {
+                        requestId: "sample123",
+                        conferenceSolutionKey: { type: "hangoutsMeet" },
+                    },
+                },
+            };
+
+            const response = await gapi.client.calendar.events.insert({
+                calendarId: "primary",
+                resource: event,
+                conferenceDataVersion: 1,
+            });
+
+            const meetLink = response.result.hangoutLink;
+            document.getElementById('output').textContent = `Google Meet Link: ${meetLink}`;
+        };
+
+        // Initialize the API client
+        initializeGapi();
+    </script>
+</body>
+</html>
