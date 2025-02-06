@@ -121,7 +121,9 @@
         <p id="userAge" style="display: none;">Password: <strong></strong></p>
            <br>
            <a href="home"><button style="padding: 10px 20px; border: 0; border-radius: 14px; background-color: #4da8da; color: white;">Explore Courses</button></a>
+
            <a href="guide"><p>Guide (Must read)</p></a>
+           <a href="room"><button style="position: absolute; right: 5px; bottom: 4px; color: blue; background-color: transparent; padding: 5px; border: 1px solid rgb(109, 109, 252); border-radius: 4px; cursor: pointer;">Create Room</button></a>
     </div>
 
     <!-- Display Created Courses -->
@@ -149,7 +151,8 @@
 
     if (!loggedInUser) {
         alert("User not found. Please log in.");
-        window.location.href = "login.html";  // Redirect to login if not logged in
+        window.location.href = "login.html";
+          // Redirect to login if not logged in
     }
 
     // Display User Data
