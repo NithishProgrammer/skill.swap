@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <body>
+      
+      <h1>Reciprocal Skills Video Conference <span style="font-size: 16px;">with Jitsi JaaS</span>
+    
+    <div style="width: 98%;">
+      </h1>
+     <br>
+     <br><br><br>
+     <center>
+     <input type="text" id="roomn" placeholder="Enter RoomName" required style="width: 70%; height: 60px; padding: 8px; border: 1px solid rgb(121, 154, 247); border-radius: 10px;">
+     <input type="submit" onclick="svcfun()" value="Start Meeting" style="width: 20%; height: 60px; padding: 8px; border: 2px solid rgb(71, 118, 248); border-radius: 10px; color: blue; background: transparent; cursor: pointer;">
+  </center>
+    </div>
+    
+    <script>
+      localStorage.clear()
+      function svcfun(){
+        
+        let room = document.getElementById("roomn").value;
+        let localroom = localStorage.setItem("Roomno" , room);
+        window.location.href = "https://nithishprogrammer.github.io/skill.swap/Jcon";
+      }
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+    <p>Solution by:</p>
+    <img src="https://jitsi.org/wp-content/themes/jitsi/images/logo-web-2020.png" alt="" width="85px">
+  </center>
+    </body>
+  </head>
+</html>
