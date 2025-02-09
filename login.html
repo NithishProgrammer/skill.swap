@@ -84,7 +84,13 @@
 
             try {
                 const response = await fetch(
-                    `https://sheetdb.io/api/v1/a7gvozur7chrw/search?name=${name}&email=${email}&age=${age}`
+                    `https://sheetdb.io/api/v1/a7gvozur7chrw/search?name=${name}&email=${email}&age=${age}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x'
+                        }
+                    }
                 );
                 const data = await response.json();
 
