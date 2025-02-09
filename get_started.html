@@ -65,8 +65,15 @@
         <form id="signupForm">
             <input type="text" id="name" name="name" placeholder="Enter your name" required>
             <input type="email" id="email" name="email" placeholder="Enter your Gmail" required>
-            <input type="number" id="age" name="age" placeholder="Enter your Password" required>
-            <button type="submit">Signup</button>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            
+            <h3>Create a Course to Swap & Learn</h3>
+            <input type="text" id="courseName" name="courseName" placeholder="Course you can teach" required>
+            <input type="text" id="swapFor" name="swapFor" placeholder="What you want to learn" required>
+            <input type="text" id="duration" name="duration" placeholder="Duration (e.g., 4 weeks)" required>
+            <input type="text" id="hashtag" name="hashtag" placeholder="Hashtag (e.g., #AI, #WebDev)" required>
+            
+            <button type="submit">Signup & Create Course</button>
         </form>
         <br>
         <a href="login.html"><p>Login >></p></a>
@@ -74,48 +81,35 @@
 
     <script>
         const form = document.getElementById('signupForm');
-        const emailInput = document.getElementById('email');
-        const nameInput = document.getElementById('name');
-        const ageInput = document.getElementById('age');
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            // Get form values
-            const name = nameInput.value.trim();
-            const age = ageInput.value.trim();
-            const email = emailInput.value.trim();
+            const userData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                age: document.getElementById('password').value.trim(),
+                course_name: document.getElementById('courseName').value.trim(),
+                swap_for: document.getElementById('swapFor').value.trim(),
+                Duration: document.getElementById('duration').value.trim(),
+                hashtag: document.getElementById('hashtag').value.trim(),
+            };
 
-            // Validate email
-            if (!email.endsWith('@gmail.com')) {
+            if (!userData.email.endsWith('@gmail.com')) {
                 alert('Please enter a valid Gmail address!');
                 return;
             }
 
-            // Prepare data to send to SheetDB
-            const userData = {
-                name: name,
-                age: age,
-                email: email,
-            };
-
             try {
-                // Send data to SheetDB
                 const response = await fetch("https://sheetdb.io/api/v1/a7gvozur7chrw", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(userData)
                 });
 
-                const result = await response.json();
-
                 if (response.ok) {
-                    alert('Signup successful!');
-                    form.action = "https://formsubmit.co/" + email;
-                    form.method = "POST"
-                    window.location.href = "login.html"; // Redirect to dashboard after success
+                    alert('Signup & Course Creation Successful!');
+                    window.location.href = "login.html";
                 } else {
                     alert('There was an error. Please try again.');
                 }
@@ -125,8 +119,5 @@
             }
         });
     </script>
-
-    <br>
-
 </body>
 </html>
