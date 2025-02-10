@@ -140,7 +140,7 @@
             <input type="text" id="duration" placeholder="Duration" required>
             <input type="text" id="swapFor" placeholder="Swap for" required>
             <input type="text" id="hashtag" placeholder="Hashtag" required>
-            <button type="submit">Create Course</button>
+            <button type="submit" id="Ccourse">Create Course</button>
         </form>
     </div>
 </div>
@@ -148,6 +148,7 @@
 <script>
     // Get user data from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const sub = document.getElementById('Ccourse');
 
     if (!loggedInUser) {
         alert("User not found. Please log in.");
@@ -205,6 +206,10 @@
         const Duration = document.getElementById("duration").value.trim();
         const swap_for = document.getElementById("swapFor").value.trim();
         const hashtag = document.getElementById("hashtag").value.trim();
+        sub.innerHTML = "Processing..";
+        sub.style.background = "grey";
+        sub.disabled = true
+        sub.style.cursor = "none"
 
         const newCourse = {
             name: loggedInUser.name,
