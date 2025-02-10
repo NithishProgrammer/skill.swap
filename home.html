@@ -270,6 +270,8 @@
             const acceptCheckbox = document.getElementById('acceptCheckbox').checked;
             sub.innerHTML = "Processing..";
             sub.style.background = "grey";
+            sub.disabled = true
+            sub.style.cursor = "none"
             
             if (!acceptCheckbox) {
                 alert("You must accept the terms to proceed.");
