@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6CB4EE;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            color: #6CB4EE;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            text-align: center;
+        }
+        input, select, button {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #6CB4EE;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #6CB4EE;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: none;
+        }
+        .thank-you {
+            display: none;
+            text-align: center;
+            color: rgb(0, 146, 243);
+            font-size: 16px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="formContainer">
+        <h2>Exam Registration</h2>
+        <form id="examForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="number" id="amount" value="0" readonly>
+            <select id="status">
+                <option value="Paid">Paid</option>
+            </select>
+            <button type="submit" id="submitBtn">Register</button>
+        </form>
+    </div>
+
+    <div class="thank-you" id="thankYouMessage">
+        <h2>Thanks for registering for the exam by Recipro Skills!</h2>
+        <p>You will get the exam link in your provided mail.</p>
+        <p>Remember, only registered users will be allowed to access the exams. Others will not be able to access the exam link sent to you.</p>
+        <h5>Check your mail shortly.</h5>
+        <a href="https://nithishprogrammer.github.io/skill.swap/exam"><p>Go to Exams Dashboard</p></a>
+    </div>
+
+    <script>
+        document.getElementById("examForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let amount = document.getElementById("amount").value;
+            let status = document.getElementById("status").value;
+            let submitBtn = document.getElementById("submitBtn");
+            
+            let data = {
+                Name: name,
+                Email: email,
+                Amount: amount,
+                Status: status
+            };
+            
+            try {
+                submitBtn.disabled = true;
+                let response = await fetch("https://sheetdb.io/api/v1/ahz97w1v3740o", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer v9hvyk6n2hctwv6jeoxvroq91w84q7uvl6giy9p6",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ data: [data] })
+                });
+                if (response.ok) {
+                    document.getElementById("formContainer").style.display = "none";
+                    document.getElementById("thankYouMessage").style.display = "block";
+                    submitBtn.disabled = false;
+                    
+                } else {
+                    alert("Failed to register. Try again.");
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
