@@ -94,6 +94,7 @@
             
             try {
                 submitBtn.disabled = true;
+                submitBtn.innerHTML = "Processing"
                 let response = await fetch("https://sheetdb.io/api/v1/ahz97w1v3740o", {
                     method: "POST",
                     headers: {
@@ -106,6 +107,7 @@
                     document.getElementById("formContainer").style.display = "none";
                     document.getElementById("thankYouMessage").style.display = "block";
                     submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Submit"
                     
                 } else {
                     alert("Failed to register. Try again.");
