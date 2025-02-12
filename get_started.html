@@ -73,7 +73,7 @@
             <input type="text" id="duration" name="duration" placeholder="Duration (e.g., 4 weeks)" required>
             <input type="text" id="hashtag" name="hashtag" placeholder="Hashtag (e.g., #AI, #WebDev)" required>
             
-            <button type="submit">Signup & Create Course</button>
+            <button type="submit" id="Sbtn">Signup & Create Course</button>
         </form>
         <br>
         <a href="login.html"><p>Login >></p></a>
@@ -81,12 +81,18 @@
 
     <script>
         const form = document.getElementById('signupForm');
+        const sub1 = document.getElementById('Sbtn');
 
         // Bearer Token for SheetDB API
         const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x'; // Replace with your actual token
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+            
+            sub1.innerHTML = "Processing..";
+            sub1.style.background = "grey";
+            sub1.disabled = true
+            sub1.style.cursor = "none"
 
             const userData = {
                 name: document.getElementById('name').value.trim(),
