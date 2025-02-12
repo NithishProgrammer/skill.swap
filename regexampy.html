@@ -59,7 +59,7 @@
         <form id="examForm">
             <input type="text" id="name" placeholder="Name" required>
             <input type="email" id="email" placeholder="Email" required>
-            <input type="number" id="amount" value="0" readonly>
+            <input type="number" id="amount" placeholder="Amount - Free (Rs. 0)" readonly>
             <select id="status">
                 <option value="Paid">Paid</option>
             </select>
@@ -81,7 +81,7 @@
             
             let name = document.getElementById("name").value;
             let email = document.getElementById("email").value;
-            let amount = document.getElementById("amount").value;
+            let amount = 0;
             let status = document.getElementById("status").value;
             let submitBtn = document.getElementById("submitBtn");
             
