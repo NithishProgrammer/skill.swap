@@ -1,273 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - User Courses</title>
-    <link href="S-removebg-preview.png" rel="icon">
-    <style>
-        /* Same styling as before, unchanged */
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f8ff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .dashboard-container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .user-info {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .user-info p {
-            font-size: 16px;
-            color: #333;
-        }
-
-        .course-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .course-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            width: 250px;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            position: relative;
-        }
-
-        .course-card h3 {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .course-card p {
-            font-size: 14px;
-            color: #777;
-        }
-
-        .course-card button {
-            background-color: #4da8da;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .course-card button:hover {
-            background-color: #3a88b5;
-        }
-
-        .delete-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: red;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .delete-btn:hover {
-            background-color: #e60000;
-        }
-
-        .course-form {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 50px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .course-form input, .course-form select, .course-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .course-form button {
-            background-color: #4da8da;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .course-form button:hover {
-            background-color: #3a88b5;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmation of Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff; /* Baby blue background */
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      padding: 10px;
+      background-color: #b3d9f7; /* Light baby blue */
+      border-radius: 8px;
+    }
+    .header h1 {
+      font-size: 24px;
+      color: #2c3e50;
+    }
+    .content {
+      margin: 20px 0;
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #a0c8f0; /* Soft baby blue button */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .footer p {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-
-<div class="dashboard-container">
-    <!-- User Info -->
-    <div class="user-info">
-        <a href="/skill.swap/"> <button style="padding: 4px; background-color: rgb(252, 106, 106); border: 0; border-radius: 10px; position: absolute; right: 4px;">< Log out</button></a>
-        <br>
-        <h2>Welcome to Your Dashboard</h2>
-        <p id="userName">Name: <strong></strong></p>
-        <p id="userEmail">Email: <strong></strong></p>
-        <p id="userAge" style="display: none;">Password: <strong></strong></p>
-        <br>
-        <a href="home"><button style="padding: 10px 20px; border: 0; border-radius: 14px; background-color: #4da8da; color: white;">Explore Courses</button></a>
-        <a href="guide"><p>Guide (Must read)</p></a>
-        <a href="room"><button style="position: absolute; right: 5px; bottom: 4px; color: blue; background-color: transparent; padding: 5px; border: 1px solid rgb(109, 109, 252); border-radius: 4px; cursor: pointer;">Create Room</button></a>
+  <div class="container">
+    <div class="header">
+      <h1>Confirmation of Registration</h1>
     </div>
+    <div class="content">
+      <p>Dear [Recipient's Name],</p>
+      <p>We are pleased to inform you that you have successfully registered for the <strong>Affordable Skill Certification Exam</strong> in the <strong>Recipro Skills</strong> program.</p>
+      
+      <p><strong>Details About the Exam:</strong> You will receive an email by <strong>March 10, 2025</strong>, containing specific details about the exam, including the exact date and a link to access the exam.</p>
+      
+      <p><strong>Action Required:</strong> Please make sure to check your email starting from <strong>March 24, 2025</strong> for important information regarding your exam <strong> (Also Check the Spam folder)</strong>. Ensure your inbox has sufficient space to receive all crucial emails, and you won’t miss any important details.</p>
 
-    <!-- Display Created Courses -->
-    <h3>Your Created Courses:</h3>
-    <div class="course-list" id="courseList">
-        <!-- Courses will be displayed here after fetching -->
+      <p><a href="mailto:" class="button">Check Your Email</a></p>
+      
+      <p>If you have any questions or need assistance, feel free to reach out to our support team. We are here to help you!</p>
     </div>
-
-    <!-- Create Course Form -->
-    <div class="course-form" id="courseForm">
-        <h3>Create a New Course</h3>
-        <form id="createCourseForm">
-            <input type="text" id="courseName" placeholder="Course Name" required>
-            <input type="text" id="duration" placeholder="Duration" required>
-            <input type="text" id="swapFor" placeholder="Swap for" required>
-            <input type="text" id="hashtag" placeholder="Hashtag" required>
-            <button type="submit">Create Course</button>
-        </form>
+    <div class="footer">
+      <p>Thank you for choosing <strong>Recipro Skills</strong>.</p>
+      <p>Best Regards,</p>
+      <p><strong>The Recipro Skills Team</strong></p>
     </div>
-</div>
-
-<script>
-    // Get user data from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
-
-    if (!loggedInUser) {
-        alert("User not found. Please log in.");
-        window.location.href = "login.html";
-        // Redirect to login if not logged in
-    }
-
-    // Display User Data
-    document.getElementById("userName").querySelector("strong").textContent = loggedInUser.name;
-    document.getElementById("userEmail").querySelector("strong").textContent = loggedInUser.email;
-    document.getElementById("userAge").querySelector("strong").textContent = loggedInUser.age;
-
-    // Fetch and display user's courses
-    async function displayCourses() {
-        const response = await fetch(`https://sheetdb.io/api/v1/a7gvozur7chrw/search?email=${loggedInUser.email}`);
-        const data = await response.json();
-
-        const courseList = document.getElementById("courseList");
-        courseList.innerHTML = "";  // Clear the course list
-
-        data.forEach(course => {
-            const courseCard = document.createElement("div");
-            courseCard.classList.add("course-card");
-            courseCard.innerHTML = `
-                <button class="delete-btn" onclick="deleteCourse('${course.id}')">Delete</button>
-                <h3>${course.course_name}</h3>
-                <p>Duration: ${course.Duration}</p>
-                <p>Swap for: ${course.swap_for}</p>
-                <button>Details</button>
-            `;
-            courseList.appendChild(courseCard);
-        });
-    }
-
-    // Delete course functionality
-   // Delete course functionality
-// Delete course functionality
-async function deleteCourse(courseId) {
-    try {
-        const response = await fetch(`https://sheetdb.io/api/v1/58f61be4dda40/id/${courseId}`, {
-            method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            alert("Course deleted successfully!");
-            displayCourses();  // Refresh course list after deletion
-        } else {
-            alert("Failed to delete course.");
-        }
-    } catch (error) {
-        console.error("Error deleting course", error);
-        alert("Error deleting course. Please try again.");
-    }
-}
-    displayCourses();
-
-    // Create New Course
-    const createCourseForm = document.getElementById("createCourseForm");
-
-    createCourseForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        const course_name = document.getElementById("courseName").value.trim();
-        const Duration = document.getElementById("duration").value.trim();
-        const swap_for = document.getElementById("swapFor").value.trim();
-        const hashtag = document.getElementById("hashtag").value.trim();
-
-        const newCourse = {
-            name: loggedInUser.name,
-            email: loggedInUser.email,
-            course_name,
-            Duration,
-            swap_for,
-            hashtag,
-        };
-
-        try {
-            const response = await fetch("https://sheetdb.io/api/v1/a7gvozur7chrw", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newCourse),
-            });
-
-            const result = await response.json();
-            alert("Course created successfully!");
-            displayCourses();  // Refresh course list after creation
-        } catch (error) {
-            console.error("Error creating course", error);
-            alert("Error creating course. Please try again.");
-        }
-    });
-</script>
-<br>
-<center>
-
-<a href="home"><button style="padding: 10px 20px; border: 0; border-radius: 14px; background-color: #4da8da; color: white;">Explore</button>
-</a>
-</center>
-<br><br>
+  </div>
 </body>
 </html>
