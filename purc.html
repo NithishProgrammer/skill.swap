@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <center>
+    <img src="https://nithishprogrammer.github.io/skill.swap/S-removebg-preview.png" width="100px" alt="Recipro Skills Logo" class="logo">
+    <h1 style="color: rgb(79, 176, 255);">Payment Page</h1>
+    <p>Hello, welcome to the payment page! The total price for the Recipro Skills Certification Exams is Rs. 400 (inclusive of GST).</p>
+</center>
+    
+    <script>
+        window.onload = function() {
+
+            if (localStorage.getItem('namepay') == null || localStorage.getItem('emailpay') == null || localStorage.getItem('phonepro') == null) {
+                alert("Please fill in your details Properly before Proceeding to Payment");
+                window.location.href = 'reg.html';
+            }
+
+            if (localStorage.getItem('examTypeR') == null || localStorage.getItem('examTypeR') == "Select Exam") {
+                alert("Please select the Exam before Proceeding to Payment");
+                window.location.href = 'exams_2222';
+            }
+
+            var options = {
+                "key": "rzp_test_qUnnDXCPXNxDuc", // Replace with your Razorpay API key
+                "amount": 40000, // Amount in paise (₹400)
+                "currency": "INR",
+                "name": "Recipro",
+                "description": "Purchase Item",
+                "image": "https://nithishprogrammer.github.io/skill.swap/S-removebg-preview.png", // Replace with your logo URL
+                "handler": function (response) {
+                    // Capture Payment After Authorization
+                    fetch('https://api.razorpay.com/v1/payments/' + response.razorpay_payment_id + '/capture', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Basic ' + btoa('rzp_test_qUnnDXCPXNxDuc:nsjb5bac0KUTvhfmbUpV9ZQw'),
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ amount: 40000, currency: "INR" })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "captured") {
+                            localStorage.removeItem('namepay');
+                            localStorage.removeItem('emailpay');
+                            localStorage.removeItem('phonepro');
+                            localStorage.removeItem('examTypeR');
+                            window.location.href = "https://nithishprogrammer.github.io/skill.swap/exmatq";
+                        } else {
+                            alert("Payment Capture Failed!");
+                        }
+                    })
+                    .catch(error => console.error("Error Capturing Payment:", error));
+                },
+                "prefill": {
+                    "name": localStorage.getItem('namepay'),
+                    "email": localStorage.getItem('emailpay'),
+                    "contact": localStorage.getItem('phonepro')
+                },
+                "notes": {
+                    "exam_type": localStorage.getItem('examTypeR'),
+                    "name": localStorage.getItem('namepay')
+                },
+                "theme": {
+                    "color": "#3399cc"
+                },
+                "modal": {
+                    "ondismiss": function() {
+                        localStorage.removeItem('namepay');
+                        localStorage.removeItem('emailpay');
+                        localStorage.removeItem('phonepro');
+                        localStorage.removeItem('examTypeR');
+                        alert("Payment Cancelled!");
+                        window.location.href = "exams_2222"; // Redirect on failure
+                    }
+                }
+            };
+            var rzp = new Razorpay(options);
+            rzp.open();
+        };
+    </script>
+</body>
+</html>
