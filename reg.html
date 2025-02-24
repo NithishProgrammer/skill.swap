@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipro Skills Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e6e6e6, #f8f9fa);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 650px;
+        }
+        .logo {
+            width: 110px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 96%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        select {
+            width: 96%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+        .checkbox-container a {
+            color: #0073e6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .checkbox-container a:hover {
+            text-decoration: underline;
+        }
+        input[type="submit"] {
+            background: #0073e6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background: #005bb5;
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+            input {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://nithishprogrammer.github.io/skill.swap/S-removebg-preview.png" alt="Recipro Skills Logo" class="logo">
+    <div class="container">
+        <h2>Enter Your Details</h2>
+        <input type="text" id="exam-type" placeholder="Exam Type" disabled>
+        <input type="text" id="name" placeholder="Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="number" id="phone" placeholder="Phone">
+        
+        <div class="checkbox-container">
+            <input type="checkbox" id="terms">
+            <label for="terms">I agree to the <a href="https://nithishprogrammer.github.io/skill.swap/know_exam" target="_blank">Terms & Conditions</a></label>
+        </div>
+        
+        <input type="submit" value="Submit" onclick="submitForm()">
+    </div>
+
+    <script>
+         var examType = document.getElementById('exam-type');
+         examType.value = localStorage.getItem('examTypeR');
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var terms = document.getElementById('terms').checked;
+           
+            
+            if (!terms) {
+                alert("Please agree to the Terms & Conditions before proceeding.");
+                return;
+            }
+            
+            localStorage.setItem('namepay', name);
+            localStorage.setItem('emailpay', email);
+            localStorage.setItem('phonepro', phone);
+            window.location.href = 'purch';
+        }
+    </script>
+</body>
+</html>
