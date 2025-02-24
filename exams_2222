@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Recipro Skills offers free certification exams in programming, data science, Python, web development, and more. Improve your skills and boost your career with recognized certifications.">
+    <meta name="keywords" content="free certification exams, Python certification, Data Science certification, Web Development certification, online exams, programming skills, beginner exams, advanced exams, skill certification, Recipro Skills">
+    <meta name="author" content="Recipro Skills">
+    <meta property="og:title" content="Recipro Skills - Free Skill Certification Exams">
+    <meta property="og:description" content="Take free exams in Python, Data Science, Web Development, and more. Certify your skills and enhance your career with Recipro Skills.">
+    <meta property="og:image" content="S-removebg-preview.png">
+    <meta property="og:url" content="https://nithishprogrammer.github.io/skill.swap/exams">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Recipro Skills">
+    <meta name="twitter:title" content="Recipro Skills - Free Skill Certification Exams">
+    <meta name="twitter:description" content="Take free exams in Python, Data Science, Web Development, and more. Certify your skills and boost your career with Recipro Skills.">
+    <meta name="twitter:image" content="link-to-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="S-removebg-preview.png" rel="icon">
+    <title>Exams by Recipro Skills</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #e0f7fa, #f0f8ff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #0077cc;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .quote {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin: 20px 0;
+            font-size: 1rem;
+        }
+
+        .exam-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            justify-content: center;
+        }
+
+        .exam-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .exam-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .exam-box h3 {
+            font-size: 1.5rem;
+            color: #0077cc;
+            margin-bottom: 10px;
+        }
+
+        .exam-box p {
+            color: #777;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .exam-box button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .exam-box button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #777;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1 {
+                margin-top: 20px;
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+
+            .quote {
+                font-size: 0.9rem;
+            }
+
+            .exam-box {
+                padding: 15px;
+            }
+
+            .exam-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .exam-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Exams by Recipro Skills</h1>
+    <h2>Free Skill Certification Exams for Everyone!</h2>
+    <a href="know_exam"> <h4>Read This !</h4></a>
+
+    <div class="quote">
+        <p id="quotes">"Skills are the future. Certify yours now!"</p>
+    </div>
+
+    <div class="exam-container">
+        <!-- Exam 1 -->
+        <div class="exam-box">
+            <h3 id="ex_t">Python (Beginner)</h3>
+            <p>Test your knowledge in Python at the Beginner Level</p>
+            <button onclick="take_exam1()">Take Exam</button>
+            <div style="width: 10px; position: relative; right: 3px;"><img src="https://nithishprogrammer.github.io/skill.swa/S-removebg-preview.png" alt="" style="width: 28px; object-fit: cover;"></div>
+        </div>
+
+        <!-- Exam 2 -->
+        <div class="exam-box">
+            <h3 id="ex_t2">Python (Advanced)</h3>
+            <p>Challenge yourself with the Python Advanced Level</p>
+            <button onclick="take_exam2()" style="background: grey;">Not Avalilable</button>
+        </div>
+
+        <!-- Exam 3 -->
+        <div class="exam-box">
+            <h3>Data Science</h3>
+            <p>Prove your skills in Data Science and Analytics</p>
+            <button onclick="window.location.href='404'" style="background: grey;">Not Avalilable</button>
+        </div>
+
+        <!-- Exam 4 -->
+        <div class="exam-box">
+            <h3>Web Development</h3>
+            <p>Assess your proficiency in Web Development</p>
+            <button style="background: grey;">Not Avalilable</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by Recipro Skills</p>
+    </footer>
+
+    <script>
+        let q = document.getElementById('quotes');
+        const fruits = ["Learn skills, earn success", "Adaptability is the skill of the future.", "Skills are the bridge between dreams and reality.", "In the age of automation, skills are your greatest asset.", "Skills are the key to unlocking your potential." , "Invest in skills, they're the best returns." , "Skills are the currency of the 21st century" , "Knowledge is potential, skills are performance." , "Diplomas are the ticket, skills are the journey." , "Degrees get you in the interview, skills get you the job." , "Education lays the foundation, skills build the house." , "Never stop sharpening your skills; the world never stops changing." , "The most valuable skill is the ability to learn new skills.", "In a changing world, the only constant is the need for new skills.", "Skills are the capital of the modern worker." , "Skills are honed, not inherited."];
+
+const getRandomString = (list) => {
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+};
+
+q.textContent = getRandomString(fruits);
+
+    </script>
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Python Programming - Beginner Level",
+    "provider": {
+      "@type": "Organization",
+      "name": "Recipro Skills"
+    },
+    "courseMode": "Online",
+    "educationalCredentialAwarded": "Certificate",
+    "courseMode": "Online",
+    "url": "https://nithishprogrammer.github.io/skill.swap/exams"
+  }
+</script>
+<script>
+    function take_exam1() {
+        var examType = document.getElementById('ex_t').innerText;
+       localStorage.setItem('examTypeR', examType);
+        window.location.href = 'reg';
+    }
+    function take_exam2() {
+        var examType = document.getElementById('ex_t2').innerText;
+       localStorage.setItem('examTypeR', examType);
+        window.location.href = 'reg';
+    }
+</script>
+
+
+</body>
+</html>
