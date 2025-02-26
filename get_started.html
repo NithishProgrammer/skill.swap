@@ -9,11 +9,11 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(120deg, #c9efff, #e3faff);
+            background: linear-gradient(120deg, #aae2fa, #91d5fc);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 120vh;
         }
 
         .signup-container {
@@ -57,6 +57,19 @@
         .signup-container button:hover {
             background: #2d8db6;
         }
+
+        @media (max-width: 1200px) {
+            body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #c9efff, #e3faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        }
     </style>
 </head>
 <body oncontextmenu="return false">
@@ -71,12 +84,16 @@
             <input type="text" id="courseName" name="courseName" placeholder="Course you can teach" required>
             <input type="text" id="swapFor" name="swapFor" placeholder="What you want to learn" required>
             <input type="text" id="duration" name="duration" placeholder="Duration (e.g., 4 weeks)" required>
-            <input type="text" id="hashtag" name="hashtag" placeholder="Hashtag (e.g., #AI, #WebDev)" required>
+            <input type="text" id="hashtag" name="hashtag" placeholder="Hashtag (e.g., #AI, #WebDev)" required><br>
+
+            <div>
+                <p style="font-size: 14px;">By signing up, you agree to our <a href="guide">Terms of Service</a> and <a href="privacypolicy">Privacy Policy</a>.</p>
+            </div>
             
             <button type="submit" id="Sbtn">Signup & Create Course</button>
         </form>
         <br>
-        <a href="login.html"><p>Login >></p></a>
+        <a href="login.html"><p>Already Have an Account ?</p></a>
     </div>
 
     <script>
