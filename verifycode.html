@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Code</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #9fc7ff, #96c5fa);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            color: #4a90e2;
+        }
+        .note {
+            background: #eaf3fc;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #2b6cb0;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .code-input {
+            width: 80%;
+            height: 50px;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            outline: none;
+            margin: 20px 0;
+        }
+        .code-input:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px #0056b3;
+        }
+        .verify-btn {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .verify-btn:hover {
+            background: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Verification Code</h2>
+        <div class="note">
+            You would have received an email from "Form Submit". Do check Spam floder if didn't get. Please activate the form to get the code and enter it here. Do not refresh the code. The code will be active for 15 minutes only.
+        </div>
+        <p id="email_inp_user" style="color: gray; font-size: 14px;"></p>
+        <input type="text" class="code-input" maxlength="6" placeholder="Enter the Verification Code">
+        <button class="verify-btn" onclick="verifyCode()">Verify</button>
+    </div>
+    
+    <script>
+       let  userdataRS = localStorage.getItem('RSuserdata');
+        userdataRS = JSON.parse(userdataRS);
+        let user_em_in = document.getElementById('email_inp_user');
+
+        if (localStorage.getItem('crsl') == null) {
+            alert("Please fill in your details Properly before Proceeding to Verification");
+            window.location.href = 'summma copy.html';
+        }
+
+        user_em_in.innerHTML = "The email is sent to <strong>" + userdataRS.email + "</strong>";
+        function verifyCode() {
+            const input = document.querySelector('.code-input').value.trim();
+            if (input === localStorage.getItem('crsl')) {
+
+               
+
+                window.location.href = 'finalgo.html';
+                
+            } else {
+                alert('Enter a valid code!');
+            }
+        }
+    </script>
+</body>
+</html>
