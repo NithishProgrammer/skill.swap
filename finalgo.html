@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #8ab9fc, #69afff);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #4a90e2;
+        }
+        .info {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .info p {
+            background: #eaf3fc;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2b6cb0;
+            margin: 5px 0;
+        }
+        .info img {
+            width: 50px;
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Signup Info</h2>
+        <img src="user_info_icon.png" alt="Info Icon" width="50px">
+        <div class="info" id="userInfo">
+            
+        </div>
+        <button onclick="creatersp()" id="subbutton" style="padding: 10px; border: 0; border-radius: 6px; font-weight: bold; color: white; background-color: #4a90e2;">Create Profile</button>
+    </div>
+    
+    <script>
+
+const userData = JSON.parse(localStorage.getItem("RSuserdata"));
+const BEARER_TOKEN = '1mcbkcule24lyk3h9rnn4a8h0t11cv77115lm74y';
+       
+        
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const userData = JSON.parse(localStorage.getItem("RSuserdata"));
+            
+            if (userData) {
+                document.getElementById("userInfo").innerHTML = `
+                    <p><strong>Name:</strong> ${userData.name}</p>
+                    <p><strong>Email:</strong> ${userData.email}</p>
+                    <p><strong>Created Course Name:</strong> ${userData.course_name}</p>
+                    <p><strong>Swap For:</strong> ${userData.swap_for}</p>
+                    <p><strong>Duration:</strong> ${userData.Duration}</p>
+                    <p><strong>Hashtag:</strong> ${userData.hashtag}</p>
+                   
+                `;
+            } else {
+                document.getElementById("userInfo").innerHTML = "<p>No user data found.</p>";
+                window.location.href = "get_started.html";
+            }
+        });
+
+        async function creatersp() {
+            try {
+
+                subb = document.getElementById("subbutton");
+                subb.disabled = true;
+                subb.innerHTML = "Creating Profile...";
+                subb.style.background = "grey";
+                subb.style.cursor = "none";
+                const response = await fetch("https://sheetdb.io/api/v1/mz3z22ts95nry", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${BEARER_TOKEN}` // Add Bearer Token
+                    },
+                    body: JSON.stringify(userData)
+                    
+                });
+
+               let form_sub_info = {
+                    name: userData.name,
+                    email: userData.email,
+                    Your_Password: userData.age,
+                    _subject: "Account Details for Recipro Skills"
+                };
+
+                const response1 = await fetch('https://formsubmit.co/ajax/' + userData.email, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form_sub_info),
+            });
+                
+                    if (response1.ok) {
+                        alert("Profile Created Successfully!");
+                        let user = JSON.parse(localStorage.getItem("RSuserdata"));
+                        localStorage.removeItem('crsl');
+                        localStorage.setItem("user", JSON.stringify(user));
+                        window.location.href = "complete.html";
+                    } else {
+                        alert("Failed to create profile!");
+                    }
+                } catch (error) {
+                    console.error("Error creating profile:", error);
+            } 
+        }
+    </script>
+</body>
+</html>
