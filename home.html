@@ -301,8 +301,6 @@
 
             if (response.ok) {
                 sub.style.display = "none";
-                alert("Form Submitted..");
-                document.getElementById('hiddensub').value = "You got a new swap for '" + document.getElementById("courseName").value + "'";
                 window.location.href = 'thanks_for_course.html'; // Redirect after successful submission
             } else {
                 alert("There was an error submitting the form. Please try again.");
