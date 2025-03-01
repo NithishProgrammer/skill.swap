@@ -97,6 +97,30 @@
     </div>
 
     <script>
+
+        document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey && event.key === "u") {
+        event.preventDefault(); // Prevent default action
+        alert("Nice try! You can't view the source code 😉");
+
+    }
+
+    if (event.ctrlKey && event.shiftKey && event.key === "I") {
+        event.preventDefault(); // Prevent default action
+        alert("Nice try! You can't view the source code 😉");
+    }
+
+
+});
+
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault(); // Prevent default context menu 
+    alert("Not allowed!"); // Show alert
+    });
+
+
+
+        
         const form = document.getElementById('signupForm');
         const sub1 = document.getElementById('Sbtn');
          // Minimum 4-digit number
