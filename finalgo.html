@@ -58,8 +58,12 @@
     
     <script>
 
+        if (!localStorage.getItem("ycgrhn") || localStorage.getItem("ycgrhn") != "RSVerified") {
+            window.location.href = "verifycode.html";
+        }
+
 const userData = JSON.parse(localStorage.getItem("RSuserdata"));
-const BEARER_TOKEN = '1mcbkcule24lyk3h9rnn4a8h0t11cv77115lm74y';
+const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x';
        
         
         document.addEventListener("DOMContentLoaded", function() {
@@ -90,7 +94,7 @@ const BEARER_TOKEN = '1mcbkcule24lyk3h9rnn4a8h0t11cv77115lm74y';
                 subb.innerHTML = "Creating Profile...";
                 subb.style.background = "grey";
                 subb.style.cursor = "none";
-                const response = await fetch("https://sheetdb.io/api/v1/mz3z22ts95nry", {
+                const response = await fetch("https://sheetdb.io/api/v1/a7gvozur7chrw", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
