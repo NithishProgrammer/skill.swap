@@ -73,6 +73,29 @@
     </div>
     
     <script>
+
+        document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey && event.key === "u") {
+        event.preventDefault(); // Prevent default action
+        alert("Nice try! You can't view the source code 😉");
+
+    }
+
+    if (event.ctrlKey && event.shiftKey && event.key === "I") {
+        event.preventDefault(); // Prevent default action
+        alert("Nice try! You can't view the source code 😉");
+    }
+
+
+});
+
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault(); // Prevent default context menu 
+    alert("Not allowed!"); // Show alert
+    });
+
+
+        
        let  userdataRS = localStorage.getItem('RSuserdata');
         userdataRS = JSON.parse(userdataRS);
         let user_em_in = document.getElementById('email_inp_user');
