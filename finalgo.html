@@ -58,6 +58,9 @@
     
     <script>
 
+        if (localStorage.getItem('ycgrhn') === null){
+            window.location.href = 'get_started'
+
 const userData = JSON.parse(localStorage.getItem("RSuserdata"));
 const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x';
        
@@ -119,6 +122,7 @@ const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x';
                         alert("Profile Created Successfully!");
                         let user = JSON.parse(localStorage.getItem("RSuserdata"));
                         localStorage.removeItem('crsl');
+                        localStorage.removeItem('ycgrhn');
                         localStorage.setItem("user", JSON.stringify(user));
                         window.location.href = "complete.html";
                     } else {
