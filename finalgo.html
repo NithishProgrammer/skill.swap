@@ -89,7 +89,8 @@ const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x';
         async function creatersp() {
             try {
 
-                subb = document.getElementById("subbutton");
+                let subb = document.getElementById("subbutton");
+                subb.style.transition = "0.5s";
                 subb.disabled = true;
                 subb.innerHTML = "Creating Profile...";
                 subb.style.background = "grey";
@@ -110,6 +111,8 @@ const BEARER_TOKEN = 'k73ywkdhiv7nne4hcw8nx4ivttkk64qojhbzzs8x';
                     Your_Password: userData.age,
                     _subject: "Account Details for Recipro Skills"
                 };
+
+                subb.innerHTML = "Setting Up Things...";
 
                 const response1 = await fetch('https://formsubmit.co/ajax/' + userData.email, {
                 method: 'POST',
