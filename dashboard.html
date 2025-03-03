@@ -113,7 +113,7 @@
 <div class="dashboard-container">
     <!-- User Info -->
     <div class="user-info">
-        <button style="padding: 4px; background-color: rgb(252, 106, 106); border: 0; border-radius: 6px; position: absolute; right: 4px;" onclick="localStorage.removeItem('user')">< Log out</button>
+        <button style="padding: 4px; background-color: rgb(252, 106, 106); border: 0; border-radius: 6px; position: absolute; right: 4px;" onclick="logoutu()">< Log out</button>
         <br>
         <h2>Welcome to Your Dashboard</h2>
         <p id="userName">Name: <strong></strong></p>
@@ -146,6 +146,13 @@
 </div>
 
 <script>
+    
+     function logoutu(){
+
+        localStorage.removeItem('user');
+        window.location.href = 'index'
+    }
+    
     // Get user data from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     const sub = document.getElementById('Ccourse');
