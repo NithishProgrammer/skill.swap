@@ -1,167 +1,296 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What You Should Know | Recipro Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #f0f8ff, #e0f7fa);
-            
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            color: #333;
+            box-sizing: border-box;
         }
 
-        h1, h2 {
-            text-align: center;
-            color: #0077cc;
-            font-weight: 700;
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: #2d3748;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 18px;
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin: 2rem 0 0.5rem;
+            text-align: center;
+            font-weight: 700;
         }
 
         h2 {
-            font-size: 24px;
-            font-weight: 400;
+            font-size: 1.5rem;
+            color: #4a5568;
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 2rem;
         }
 
         .container {
-            width: 80%;
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            /* Glass effect */
-            text-align: center;
-        }
-
-        .container p {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .btn-container {
-            margin-top: 20px;
-        }
-
-        .btn-container a {
-            background-color: #0077cc;
-            color: white;
-            padding: 12px 30px;
-            font-size: 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-container a:hover {
-            background-color: #005fa3;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
         }
 
         .quote {
-            text-align: center;
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .quote p {
             font-style: italic;
-            color: #555;
-            margin: 20px 0;
-            font-size: 18px;
+            color: #4a5568;
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 0;
+        }
+
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: #cbd5e0;
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .quote::before {
+            top: -10px;
+            left: 10px;
+        }
+
+        .quote::after {
+            bottom: -30px;
+            right: 10px;
+        }
+
+        .process-steps {
+            margin: 2rem 0;
+        }
+
+        .step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-2px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: #0077cc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            margin-right: 10px;
+        }
+
+        .important-note {
+            background: #ebf8ff;
+            border-left: 4px solid #0077cc;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .btn-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #0077cc;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: #005fa3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 119, 204, 0.3);
+        }
+
+        .contact-support {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 12px;
+        }
+
+        .contact-support a {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-support a:hover {
+            color: #005fa3;
+            text-decoration: underline;
         }
 
         footer {
             text-align: center;
-            font-size: 14px;
-            color: #777;
-            margin-top: 20px;
+            padding: 2rem;
+            color: #718096;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
         }
 
         footer a {
-            color: #0077cc;
+            color: #4a5568;
             text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
 
         footer a:hover {
-            text-decoration: underline;
+            color: #0077cc;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
             h1 {
-                font-size: 30px;
+                font-size: 2rem;
             }
 
             h2 {
-                font-size: 18px;
+                font-size: 1.2rem;
             }
 
-            .quote {
-                font-size: 16px;
+            .quote p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <button onclick="window.history.back()" style="cursor: pointer; font-weight: bolder; position: absolute; left: 5px; top: 15px; border: 0; border-radius: 10px; padding: 8px 14px; background-color: rgb(157, 209, 252);"><</button> <br>
+    <button onclick="window.history.back()" class="back-button">Back</button>
 
     <h1>What You Should Know</h1>
     <h2>About Taking Exams at Recipro Skills</h2>
 
-    <div class="quote">
-        <p>"Degrees may open doors, but Skills keep them Open!"</p>
-    </div>
-
     <div class="container">
-        <p>
-            The exams will be conducted twice a year, and a person can attend only once per session. 
-            To appear for the next session, you need to pay when the registration dates are announced.
-        </p>
-        <p>
-            The exams cost Rs.350. After making the payment, you will receive further instructions. The exam dates will be announced seperately for you through mailing you at your registered mail, and you will only be able to write the exam on the announced date only. Do check the Spam Folder. 
-        </p>
-        <p>
-            If you don't receive an email within three business days after registering, please send a complaint email to <strong style="color: rgb(27, 126, 255); text-decoration: underline; text-underline-offset: 4px;" onclick="window.location.href = 'mailto:info.reciproskills@gmail.com'">info.reciproskills@gmail.com</strong> with the following details:
-            <ul>
-                <li>Your name</li>
-                <li>Your registered email</li>
-                <li>Payment Receipt PDF (sent after payment)</li>
-            </ul>
-        </p>
-     <h2>Process</h2>
-     <p>
-        <ul>
-           <li>The exams will be online. After you register you will get a Confirmation email. </li><br>
-           <li>You will get your date for your examination seperately after the registration for the exams fully closes, only in that date you will be able to access the exam. You can write the exam whenever You want to in your alloted date</li><br>
-              <li>On the day of the exam (or 2 days before exam date), You will receive an email with the link to the exam. You would be able to access the exam with the registered email only</li><br>
-              <li>The exam is one or more than one correct option based. Even you leave one correct option blank, the whole question would be wrong. So be careful and analyse the questions Properly </li>
-                <li>After the exam, you will receive the results within seconds. If you pass, you will receive a certificate within 5 minutes in your mail. If you fail, you can reappear in the next session that year</li>
-            <li>'Didn't see/get an emai from us' - Do check the spam folder for finding the mails from us</li>
-        </ul>
-        <br>
-        If you have any questions , Queries, or need assistance, feel free to reach out to our <a href="mailto:info.reciproskills@gmail.com" style="font-weight: bold; color: #0077cc;"> Support Team </a>. We are here to help you!
-     </p>
+        <div class="quote">
+            <p>"Degrees may open doors, but Skills keep them Open!"</p>
+        </div>
 
-        <!-- Button to take the exam -->
+        <div class="important-note">
+            <strong>Important:</strong> Exams are conducted twice a year, and you can attend only once per session.
+            The exam fee is Rs.350, and registration dates will be announced periodically.
+        </div>
+
+        <h2>Exam Process</h2>
+        <div class="process-steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Registration & Confirmation</strong>
+                <p>After registration and payment, you'll receive a confirmation email within 3 business days.</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Exam Date Assignment</strong>
+                <p>You'll receive your specific exam date after registration closes. The exam can be taken any time during your allotted date.</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Exam Access</strong>
+                <p>You'll receive the exam link 2 days before your scheduled date. Access is restricted to your registered email only.</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Exam Format</strong>
+                <p>Questions may have multiple correct options. All correct options must be selected for the question to be marked right.</p>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Results & Certification</strong>
+                <p>Results are instant. Passing candidates receive certificates within 5 minutes via email. Failed candidates can reappear in the next session.</p>
+            </div>
+        </div>
+
+        <div class="contact-support">
+            <p>Having questions or need assistance? Our support team is here to help!</p>
+            <a href="mailto:info.reciproskills@gmail.com">Contact Support</a>
+        </div>
+
         <div class="btn-container">
-            <a href="exams">Explore Exams</a>
+            <a href="exams" class="btn-primary">Explore Available Exams</a>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>Powered by Recipro Skills | <a href="privacypolicy">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
-        <p style="color: grey;">2025 &copy; <a href="https://g.co/kgs/4VkAM7k"> Spectraanet</a></p>
+        <p>Powered by Recipro Skills | <a href="privacypolicy">Privacy Policy</a> | <a href="guide">Terms & Conditions</a></p>
     </footer>
-
 </body>
 </html>
