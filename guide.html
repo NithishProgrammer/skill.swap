@@ -1,193 +1,414 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users/Teachers Terms - Recipro Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #eaf4fc, #f8fbff);
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 18px;
         }
 
         /* Header */
         header {
-            background: linear-gradient(90deg, #179dfd, #179dfc);
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             color: #fff;
             text-align: center;
-            padding: 20px 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
         }
 
         header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
         }
 
         header p {
-            margin: 5px 0 0;
-            font-size: 16px;
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
         }
 
         /* Main Content */
         .container {
-            max-width: 900px;
-            margin: 20px auto;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            margin-bottom: 40px;
             padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-left: 6px solid #0077cc;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
 
-        .container h2 {
-            font-size: 24px;
-            color: #20a1fd;
-            margin-bottom: 15px;
+        .section:hover {
+            transform: translateY(-2px);
         }
 
-        .container p {
-            line-height: 1.6;
-            margin: 10px 0;
+        h2 {
+            color: #0077cc;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #0077cc;
+            border-radius: 2px;
+        }
+
+        p {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            color: #181e29;
         }
 
         .important {
-            color: #d32f2f;
-            font-weight: bold;
+            color: #e53e3e;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(229, 62, 62, 0.1);
         }
 
         .note {
-            background-color: #e8f4ff;
+            background: #ebf8ff;
             border-left: 5px solid #0077cc;
-            padding: 10px 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            font-size: 14px;
-            color: #2ba3f8;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #2c5282;
+            position: relative;
+        }
+
+        .note strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a365d;
+        }
+
+        /* Links */
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #005fa3;
+            text-decoration: underline;
         }
 
         /* Buttons */
         .button-container {
-            margin-top: 20px;
+            margin: 30px 0;
             text-align: center;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 14px 30px;
             color: #fff;
-            text-decoration: none;
-            background: linear-gradient(90deg, #0077cc, #005fa3);
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 119, 204, 0.3);
         }
 
         .btn:hover {
-            background: linear-gradient(90deg, #005fa3, #003d73);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 204, 0.4);
+            background: linear-gradient(135deg, #005fa3, #0077cc);
         }
 
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Support Link */
+        .support-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: #ebf8ff;
+            border-radius: 50px;
+            color: #0077cc;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .support-link:hover {
+            background: #bee3f8;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 15px;
-            background: linear-gradient(90deg, #0794f8, #038aeb);
+            padding: 30px;
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             color: white;
-            margin-top: 20px;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
 
         footer a {
-            color: #f0faff;
+            color: white;
             text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        footer a:hover {
+            color: #e0f2ff;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <button onclick="window.history.back()" class="back-button">Back</button>
 
-  <button onclick="window.history.back()" style="cursor: pointer; font-weight: bolder; position: absolute; left: 5px; top: 15px; border: 0; border-radius: 10px; padding: 8px 14px; background-color: rgb(157, 209, 252);"><</button>
-    <!-- Header -->
-    <header>
+    <header class="animate__animated animate__fadeIn">
         <h1>Users/Teachers Terms</h1>
         <p>Everything you need to know about using Recipro Skills & Terms</p>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
-        <h2>Welcome to Recipro Skills</h2>
-        <p>
-            Recipro Skills is a platform designed to connect like-minded people to share knowledge and learn together. 
-            Whether you are a teacher creating a course or a user enrolling, this guide will help you understand how it works.
-            
-            ReciproSkills is a user-driven, peer-to-peer learning platform where learners swap skills instead of paying for courses. Users teach what they know and learn what they need, creating an accessible, community-driven education system.
-            
-        </p>
-
-        <h2>For Using</h2>
-        <p>
-            When you register for a course, your details will be shared with the respective course maker. 
-            Please note that <span class="important">acceptance into the course purely depends on the course maker</span> <br><br>
-            If you are not accepted, you can try again with another course or instructor. The can communicate with the course maker through mail / other platform where both feels okay if they accepted the swap and head over to Recipro Skills to Connect at the time of Swapping and Learning.
-        </p>
-
-        <h2>For Teaching</h2>
-        <p>
-            We have some certain pre-defined syllabus for "Certain / Some Course topics". We suggest you to follow those syllabus for teaching that would best align with our exam syllabus and make the learning even more beneficial.
-            If you are creating a course under those topics, we suggest to follow our syllabus for better benefit. <a href="pre-syllabus" style="font-weight: bold; color: #0364e2; text-decoration: underline; text-underline-offset: 4px;">View Syllabus for Topics</a>
-        </p>
-
-        <h2>Swapping & Learning</h2>
-        <p>
-            Swappers/Instructors can use any platform to connect, teach, and learn. Recommended: <span class="important">Our VidRooms</span>, available Through Your <span style="color: #0364e2; text-decoration: underline; text-underline-offset: 4px;" onclick="window.location.href = 'https://nithishprogrammer.github.io/skill.swap/dashboard' ">Dashboard. </span>
-        </p>
-
-        <h2>Course Conduct</h2>
-        <p>
-            Course makers must provide details including course topics, timing, and join link or VidRoom conference number if accepted. <span class="important">Failure to do so may result in complaints and account suspension.</span>
-        </p>
-
-        <h2>Safety & Reporting</h2>
-        <p>
-            If a user misbehaves, you are free to <span class="important">report them</span>, and necessary action will be taken. For serious issues such as online abuse, file a complaint through our portal with proof or report to nearby authorities.
-        </p>
-
-        <h2>Our Mission</h2>
-        <p>
-            At Recipro Skills, we aim to connect people with similar interests, enabling them to <span class="important">swap knowledge and learn</span>. 
-            Together, we create a dynamic and interactive learning environment. <br>
-            <span style="color: #5417fc; font-weight: bold;">Create</span>, <span style="color: #fc7e17; font-weight: bold;">Teach</span>, <span style="color: #039416; font-weight: bold;">Learn</span>, at one place  <span style="color: #179dfc; font-weight: bold;">(Recipro Skills)</span>
-        </p>
-
-        <div class="note">
-            <strong>Note:</strong> All communication between users and course makers is monitored for safety and transparency <span style="color: #050505;"> (Only When you use our Vid Rooms for Sessions). </span> If you have any concerns, feel free to reach out.
+        <div class="section">
+            <h2>Welcome to Recipro Skills</h2>
+            <p>
+                Recipro Skills is a platform designed to connect like-minded people to share knowledge and learn together. 
+                Whether you are a teacher creating a course or a user enrolling, this guide will help you understand how it works.
+            </p>
+            <p>
+                ReciproSkills is a user-driven, peer-to-peer learning platform where learners swap skills instead of paying for courses. 
+                Users teach what they know and learn what they need, creating an accessible, community-driven education system.
+            </p>
         </div>
 
+        <div class="section">
+            <h2>For Using</h2>
+            <p>
+                When you register for a course, your details will be shared with the respective course maker. 
+                Please note that <span class="important">acceptance into the course purely depends on the course maker</span>
+            </p>
+            <p>
+                If you are not accepted, you can try again with another course or instructor. You can communicate with the course maker through mail / other platform where both feels okay if they accepted the swap and head over to Recipro Skills to Connect at the time of Swapping and Learning.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>For Teaching</h2>
+            <p>
+                We have some certain pre-defined syllabus for "Certain / Some Course topics". We suggest you to follow those syllabus for teaching that would best align with our exam syllabus and make the learning even more beneficial.
+                If you are creating a course under those topics, we suggest to follow our syllabus for better benefit. 
+                <a href="pre-syllabus">View Syllabus for Topics</a>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Swapping & Learning</h2>
+            <p>
+                Swappers/Instructors can use any platform to connect, teach, and learn. Recommended: 
+                <span class="important">Our VidRooms</span>, available through your 
+                <a href="https://nithishprogrammer.github.io/skill.swap/dashboard">Dashboard</a>.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Course Conduct</h2>
+            <p>
+                Course makers must provide details including course topics, timing, and join link or VidRoom conference number if accepted. 
+                <span class="important">Failure to do so may result in complaints and account suspension.</span>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Safety & Reporting</h2>
+            <p>
+                If a user misbehaves, you are free to <span class="important">report them</span>, and necessary action will be taken. 
+                For serious issues such as online abuse, file a complaint through our portal with proof or report to nearby authorities.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Our Mission</h2>
+            <p>
+                At Recipro Skills, we aim to connect people with similar interests, enabling them to 
+                <span class="important">swap knowledge and learn</span>. Together, we create a dynamic and interactive learning environment.
+            </p>
+            <p class="mission-statement">
+                <span style="color: #5417fc; font-weight: bold;">Create</span>, 
+                <span style="color: #fc7e17; font-weight: bold;">Teach</span>, 
+                <span style="color: #039416; font-weight: bold;">Learn</span>, 
+                at one place 
+                <span style="color: #179dfc; font-weight: bold;">(Recipro Skills)</span>
+            </p>
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> 
+            All communication between users and course makers is monitored for safety and transparency 
+            <span style="color: #050505;">(Only When you use our Vid Rooms for Sessions)</span>. 
+            If you have any concerns, feel free to reach out.
+        </div>
 
         <div class="button-container">
             <button class="btn" onclick="complain()">Complain About Instructor(s)</button>
-        </div> <br>
+        </div>
 
-        
         <center>
-            <p style="color: #0364e2; text-decoration: underline; text-underline-offset: 4px;" onclick="window,location.href = 'https://www.vapi.ai/?demo=true&shareKey=071ea767-439e-4610-b6be-d9eddfbc189d&assistantId=70e036d0-acf0-48b4-932d-88429444a0f2'">Talk to our Support</p>
+            <a href="https://www.vapi.ai/?demo=true&shareKey=071ea767-439e-4610-b6be-d9eddfbc189d&assistantId=70e036d0-acf0-48b4-932d-88429444a0f2" 
+               class="support-link">
+                Talk to our Support
+            </a>
         </center>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>2025 &copy; <a href="https://g.co/kgs/4VkAM7k"> Spectraanet</a></p>
+        <p>2025 &copy; <a href="https://g.co/kgs/4VkAM7k">Spectraanet</a></p>
     </footer>
 
     <script>
         function complain() {
             window.location.href = "https://nithishprogrammer.github.io/skill.swap/T-complaint";
         }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
