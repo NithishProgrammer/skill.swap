@@ -4,165 +4,488 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint Form - Recipro Skills</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #eaf4fc, #f8fbff);
-            color: #333;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            color: #2d3748;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 18px;
         }
 
         /* Header */
         header {
-            background: linear-gradient(90deg, #0077cc, #005fa3);
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             color: white;
             text-align: center;
-            padding: 20px 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
         }
 
         header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
         }
 
         /* Main Content */
         .container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
             border-left: 6px solid #0077cc;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container h2 {
-            font-size: 24px;
+            font-size: 1.8rem;
             color: #0077cc;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #0077cc;
+            border-radius: 2px;
         }
 
         .container p {
-            font-size: 14px;
-            color: #555;
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 25px;
         }
 
         /* Form Styles */
-        form {
-            display: flex;
-            flex-direction: column;
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
         }
 
         label {
-            font-size: 16px;
-            margin-top: 10px;
-            margin-bottom: 5px;
-            color: #005fa3;
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #2d3748;
+            margin-bottom: 8px;
         }
 
         input, textarea, select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
             width: 100%;
-            box-sizing: border-box;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #2d3748;
+            background: white;
+            transition: all 0.3s ease;
         }
 
         input:focus, textarea:focus, select:focus {
             border-color: #0077cc;
+            box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
             outline: none;
-            box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .optional {
-            font-size: 12px;
-            color: #999;
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        /* File Upload Styling */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 12px 16px;
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            border-color: #0077cc;
+            background: #ebf8ff;
         }
 
         /* Submit Button */
         .btn-submit {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: linear-gradient(90deg, #0077cc, #005fa3);
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 119, 204, 0.3);
+            position: relative;
         }
 
-        .btn-submit:hover {
-            background: linear-gradient(90deg, #005fa3, #003d73);
-            transform: scale(1.05);
+        .btn-submit:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-submit .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+            left: calc(50% - 10px);
+            top: calc(50% - 10px);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .alert-success {
+            background-color: #c6f6d5;
+            border: 1px solid #9ae6b4;
+            color: #2f855a;
+        }
+
+        .alert-error {
+            background-color: #fed7d7;
+            border: 1px solid #feb2b2;
+            color: #c53030;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 15px;
-            background: linear-gradient(90deg, #005fa3, #0077cc);
+            padding: 30px;
+            background: linear-gradient(135deg, #0077cc, #1e90ff);
             color: white;
-            margin-top: 30px;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #e0f2ff;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .btn-submit {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <button onclick="window.history.back()" class="back-button">Back</button>
 
-  <button onclick="window.history.back()" style="cursor: pointer; font-weight: bolder; position: absolute; left: 5px; top: 15px; border: 0; border-radius: 10px; padding: 8px 14px; background-color: rgb(157, 209, 252);"><</button>
-    <!-- Header -->
-    <header>
+    <header class="animate__animated animate__fadeIn">
         <h1>Complaint Form</h1>
         <p>Submit your complaint regarding an instructor or course</p>
     </header>
 
-    <!-- Main Content -->
     <div class="container">
         <h2>Submit a Complaint</h2>
         <p>Please fill out the form below to report any issues with an instructor or course. All information is kept confidential and is not visible to the public.</p>
-        <form action="https://formsubmit.co/info.reciproskills@gmail.com" method="POST" enctype="multipart/form-data">
-            <!-- Hidden Fields for FormSubmit -->
+        
+        <!-- Alert Messages -->
+        <div id="successAlert" class="alert alert-success">
+            Your complaint has been submitted successfully. We will review it and take appropriate action.
+        </div>
+        <div id="errorAlert" class="alert alert-error">
+            There was an error submitting your complaint. Please try again later.
+        </div>
+        
+        <form id="myForm" action="https://formsubmit.co/info.reciproskills@gmail.com" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Instructor Complaint">
             <input type="hidden" name="_next" value="https://nithishprogrammer.github.io/skill.swap/complaint-success">
             
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <p class="optional">*Not visible to everyone in public</p>
+            </div>
 
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            <p class="optional">*Not visible to everyone in public</p>
+            <div class="form-group">
+                <label for="instructor-name">Instructor's Name</label>
+                <input type="text" id="instructor-name" name="instructor-name" placeholder="Enter the instructor's full name" required>
+            </div>
 
-            <label for="instructor-name">Instructor's Name</label>
-            <input type="text" id="instructor-name" name="instructor-name" placeholder="Enter the instructor's name" required>
+            <div class="form-group">
+                <label for="course">Course Name</label>
+                <input type="text" id="course" name="course" placeholder="Enter the course name you attended" required>
+            </div>
 
-            <label for="course">Course Name</label>
-            <input type="text" id="course" name="course" placeholder="Enter the course name you attended" required>
+            <div class="form-group">
+                <label for="email">Instructor's Email</label>
+                <input type="email" id="email" name="email" placeholder="Find it in your inbox conversations with them" required>
+            </div>
 
-            <label for="email">Instructor's Email</label>
-            <input type="email" id="email" name="email" placeholder="Find it in your inbox conversations with them" required>
+            <div class="form-group">
+                <label for="issue">Issue You Are Facing</label>
+                <textarea id="issue" name="issue" placeholder="Please describe the issue in detail. Include specific examples and dates if applicable." required></textarea>
+            </div>
 
-            <label for="issue">Issue You Are Facing</label>
-            <textarea id="issue" name="issue" placeholder="Describe the issue in detail" required></textarea>
+            <div class="form-group">
+                <label for="proof">Proof or Supporting Files (Optional)</label>
+                <div class="file-upload">
+                    <label for="proof" class="file-upload-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Click to upload files or drag and drop</span>
+                    </label>
+                    <input type="file" id="proof" name="proof" multiple>
+                </div>
+                <p class="optional">Supported formats: PDF, JPG, PNG (Max size: 4MB)</p>
+            </div>
 
-            <label for="proof">Proof or Supporting Files (Optional)</label>
-            <input type="file" id="proof" name="proof">
-
-            <button type="submit" class="btn-submit">Submit Complaint</button>
+            <button type="submit" class="btn-submit" id="submitButton">
+                <span class="spinner"></span>
+                <span class="button-text">Submit Complaint</span>
+            </button>
         </form>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>Powered by Recipro Skills | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+        <p>Powered by Recipro Skills | <a href="guide">Terms & Conditions</a> | <a href="privacypolicy">Privacy Policy</a></p>
     </footer>
+
+    <script src="https://formsubmit.co/ajax-documentation.js"></script>
+    <script>
+        // File upload preview
+        const fileInput = document.getElementById('proof');
+        const fileLabel = document.querySelector('.file-upload-label span');
+        const form = document.getElementById('myForm');
+        const submitButton = document.getElementById('submitButton');
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+        const buttonText = submitButton.querySelector('.button-text');
+        const spinner = submitButton.querySelector('.spinner');
+
+        fileInput.addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                fileLabel.textContent = `${this.files.length} file(s) selected`;
+            } else {
+                fileLabel.textContent = 'Click to upload files or drag and drop';
+            }
+        });
+
+        function showLoading() {
+            submitButton.disabled = true;
+            spinner.style.display = 'block';
+            buttonText.textContent = 'Submitting...';
+        }
+
+        function hideLoading() {
+            submitButton.disabled = false;
+            spinner.style.display = 'none';
+            buttonText.textContent = 'Submit Complaint';
+        }
+
+        function showAlert(type) {
+            // Hide both alerts first
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+
+            // Show the appropriate alert
+            if (type === 'success') {
+                successAlert.style.display = 'block';
+                // Reset form after success
+                form.reset();
+                fileLabel.textContent = 'Click to upload files or drag and drop';
+            } else {
+                errorAlert.style.display = 'block';
+            }
+
+            // Scroll alert into view
+            const alert = type === 'success' ? successAlert : errorAlert;
+            alert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                return;
+            }
+
+            showLoading();
+
+            // Get the form data
+            const formData = new FormData(this);
+
+            // Use the FormSubmit.co AJAX API
+            fetch(this.action, {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                hideLoading();
+                if (response.ok) {
+                    showAlert('success');
+                    console.log("Form submitted successfully!");
+                } else {
+                    showAlert('error');
+                    console.error("Form submission failed.");
+                }
+            })
+            .catch(error => {
+                hideLoading();
+                showAlert('error');
+                console.error("Error during form submission:", error);
+            });
+        });
+    </script>
 </body>
 </html>
