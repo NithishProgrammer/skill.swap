@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certificate Verification - Recipro Skills</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f0f8ff;">
+  <div style="box-sizing:border-box; width:100%; max-width:600px; margin:40px auto; padding:20px; background-color:#e6f2ff; border-radius:8px; font-family:Arial, sans-serif; position: relative;">
+    <img src="https://nithishprogrammer.github.io/skill.swap/S-removebg-preview.png" alt="Recipro Skills" style="width: 35px; position: absolute; top: 1px; left: 4px;">
+    <h1 style="margin:0 0 20px; font-size:24px; color:#004080; text-align:center;">Verify Your Certificate</h1>
+    <p style="margin:0 0 20px; font-size:16px; color:#003366; text-align:center;">Enter your Certificate ID below to check your certification status.</p>
+    <p style="text-align:center;">Enter the exact Certificate ID that's on the certificate.</p>
+    <div style="text-align:center; margin-bottom:20px;">
+      <input id="certId" name="certid" type="text" placeholder="Certificate ID" style="width:80%; padding:10px; font-size:16px; border:1px solid #004080; border-radius:4px;" />
+      <button id="verifyBtn" style="margin-top:10px; padding:10px 20px; background-color:#0066cc; color:#ffffff; border:none; border-radius:4px; font-size:16px; cursor:pointer;">Verify</button>
+    </div>
+    <div id="result" style="display:none; background-color:#cce0ff; padding:15px; border-radius:6px; color:#00264d; font-size:16px;"></div>
+  </div>
+  <script>
+    document.getElementById('verifyBtn').addEventListener('click', function() {
+      var id = document.getElementById('certId').value.trim();
+      var resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'none';
+      if (!id) return;
+      var queryKey = encodeURIComponent('Certificate ID') + '=' + encodeURIComponent(id);
+      var url = 'https://sheetdb.io/api/v1/wmvnm86zsxja8/search?' + queryKey;
+      fetch(url, {
+        method: 'GET',
+        headers: { 'Authorization': 'Bearer srn0khzzegig5k8hbazczip1iiqbonxytsmo6rdx' }
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Network response was not ok: ' + res.status);
+        return res.json();
+      })
+      .then(function(data) {
+        if (Array.isArray(data) && data.length > 0) {
+          var user = data[0];
+          var name = user['Full Name'];
+          var cert = user['Certificate ID'];
+          var time = user.Timestamp;
+          var perc = user['Percent Score'];
+          var passed = user['Passed?'];
+          var statusText = (passed === 'TRUE') ? '<span style="color:green; font-weight:bold;">Passed</span>' : '<span style="color:red; font-weight:bold;">Failed the exam</span>';
+          resultDiv.innerHTML = '<h3 style="margin-top:0;"><strong>Name:</strong> ' + name + ' ✅</h3>' +
+                                '<p><strong>Certificate ID:</strong> ' + cert + '</p>' +
+                                '<p><strong>Date:</strong> ' + new Date(time).toLocaleString() + '</p>' +
+                                '<p><strong>Score:</strong> ' + perc + '%</p>' +
+                                '<p><strong>Result:</strong> ' + statusText + '</p>';
+        } else {
+          resultDiv.innerHTML = '<p>This user is not present in the Certificate Database</p>';
+        }
+        resultDiv.style.display = 'block';
+      })
+      .catch(function(err) {
+        resultDiv.innerHTML = '<p>Error verifying certificate. Please try again later.</p>';
+        resultDiv.style.display = 'block';
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
