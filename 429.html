@@ -12,99 +12,145 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #4a90e2, #b46af5);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            /* Pure blue gradient background */
+            background: linear-gradient(135deg, #efeff0, #ccdde2, #d0f0fd);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 90vh;
+            min-height: 100vh;
             text-align: center;
-            overflow: hidden;
+            padding: 20px;
         }
 
         .error-container {
-            width: 95%;
-            background: rgba(60, 179, 248, 0.7);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            /* Semi-transparent sleek blue carrgba(1, 106, 226, 0.07)d */
+            background: rgb(0, 119, 255);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .error-container h1 {
-            font-size: 6rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            /* Light, vibrant blue for the error code */
+            color: #ffffff;
+            letter-spacing: -1px;
         }
 
         .error-container h2 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
             margin-bottom: 15px;
+            color: #e0f7fa;
         }
 
-        .error-container p {
+        .error-container p.description {
             font-size: 1rem;
             margin-bottom: 30px;
             line-height: 1.6;
+            color: #d8dadb;
         }
 
-        .error-container a {
+        .btn-home {
+            display: inline-block;
             text-decoration: none;
-            padding: 10px 20px;
-            background: #4a90e2;
+            padding: 12px 28px;
+            /* Electric blue CTA button */
+            background: #0091ea;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             color: white;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 145, 234, 0.4);
         }
 
-        .error-container a:hover {
-            background: #9013fe;
-            color: #fff;
+        .btn-home:hover {
+            background: #00b0ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 176, 255, 0.5);
         }
 
-        @media (max-width: 768px) {
+        .copyright {
+            font-size: 0.85rem;
+            color: #e8ebec;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: fit-content;
+            margin: 0 auto;
+        }
+
+        footer p {
+            color: #c6c7c7;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        footer a:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 480px) {
+            .error-container {
+                padding: 30px 20px;
+            }
+
             .error-container h1 {
-                font-size: 4rem;
+                font-size: 3.5rem;
             }
 
             .error-container h2 {
-                font-size: 1.2rem;
-            }
-
-            .error-container p {
-                font-size: 0.9rem;
-            }
-
-            .error-container a {
-                font-size: 0.9rem;
-                padding: 8px 16px;
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
+
     <div class="error-container">
-        <h1>#429</h1>
+        <h1>429</h1>
         <h2>Too Many Requests</h2>
-        <p>
-            The server is  now Fully Loaded with ennumber of Tasks !. Please try again Later
+        <p class="description">
+            The server is currently fully loaded with a high volume of tasks. Please try again later.
         </p>
-        <a href="index">Go Back to Home</a>
-        <br>
-        <br>
-        <p>&copy; SkillSwap</p>
-        <br>
-        <footer style="background-color: rgb(245, 233, 233); border: 1px; border-radius: 10px;">
-            <p style="color: black;">Powered By: </p>
-           <a href="https://nithishprogrammer.github.io/Nithish" style="text-decoration: none; background-color: transparent;"> <img src="https://nithishprogrammer.github.io/Nithish/home_icon.svg" alt="Nithish" width="50px"></a>
+        
+        <a href="index" class="btn-home">Go Back to Home</a>
+        
+        <p class="copyright">Reserved &copy; 2023</p>
+        
+        <footer>
+            <p>Powered By:</p>
+            <a href="https://nithishprogrammer.github.io/Nithish" target="_blank">
+                <img src="https://nithishprogrammer.github.io/Nithish/home_icon.svg" alt="Nithish" width="40px">
+            </a>
         </footer>
     </div>
     
 </body>
-
-
-
 </html>
